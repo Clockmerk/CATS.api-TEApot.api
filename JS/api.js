@@ -7,25 +7,38 @@ class apiInterface {
         const data = await responce.json();
         return data;
     }
-    async getIdTea(id) {
+    async getIdSubject(id) {
         const responce = await fetch(`${this.url}/show/${id}`)
         const data = await responce.json()
         return data;
     }
-    addTea(data) {
-        return fetch(`${this.url}/add`, {
+    async addSubject(body) {
+        const responce = await fetch(`${this.url}/add`, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+        const data = await responce.json()
+        return data;
+    }
+    async updateSubject(id) {
+        const responce = await fetch(`${this.url}/update/${id}`, {
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
+        const data = await responce.json()
+        return data;
     }
-    deleteTea(id) {
-        return fetch(`${this.url}/delete/${id}`, {
+    async deleteSubject(id) {
+        const responce = await fetch(`${this.url}/delete/${id}`, {
             method: "DELETE",
         })
+        const data = await responce.json()
+        return data;
     }
 }
-const DBname = "Clockwerk"
-const teaApi = new apiInterface(DBname)
