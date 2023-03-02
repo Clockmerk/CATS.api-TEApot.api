@@ -148,7 +148,7 @@ $cardopensection.addEventListener("click", async (event) => {
             }
             break;
 
-        case 'Put':
+        case 'Put': //PUT забаговался, нужно доделать
             try {
                 const formBody = Object.fromEntries(new FormData(event.target).entries());
                 formBody.id = Number(formBody.id)
