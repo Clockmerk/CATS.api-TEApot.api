@@ -15,18 +15,22 @@
     <script defer src="JS/api.js"></script>
     <script defer src="JS/script.js"></script>
     <script defer src="JS/modal-add.js"></script>
+    <script defer src="JS/card-more.js"></script>
 </head>
 
 <body>
     <header>
-        <!-- <form>
+        <form data-form-basename>
             <input data-basename type="text" name="basename" placeholder="Введите логин базы" value="">
-        </form> -->
+        </form>
         <h1 class="animate__animated animate__bounceIn">subjectBase API</h1>
         <button data-add-subject type="button" class="btn btn-success">Добавить объект</button>
     </header>
 
     <section class="subject-section">
+    </section>
+
+    <section class="subject-card">
     </section>
 
     <section class="subject-form-modal">
@@ -36,20 +40,20 @@
                 <form data-form-post>
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Введите ID</span>
-                        <input type="number" name="id"class="form-control" aria-label="Sizing example input"
+                        <input type="number" name="id" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" required>
                     </div>
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Введите Имя</span>
-                        <input type="text" name="name"class="form-control" aria-label="Sizing example input"
+                        <input type="text" name="name" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" required>
                     </div>
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Вставьте ссылку</span>
-                        <input type="url" name="image"class="form-control" aria-label="Sizing example input"
+                        <input type="url" name="image" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" required>
                     </div>
-                    <select class="form-select" name="age"aria-label="Default select example" value="0" required>
+                    <select class="form-select" name="age" aria-label="Default select example" value="0" required>
                         <option selected value="0">Выберите возраст объекта</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -63,7 +67,7 @@
                         <option value="3">10</option>
                     </select>
                     <label for="customRange2" class="form-label">Выберите рейтинг объекта</label>
-                    <input type="range" name="rate"id="customRange2" step="1" min="0" max="10" list="rangeList"
+                    <input type="range" name="rate" id="customRange2" step="1" min="0" max="10" list="rangeList"
                         onchange="document.getElementById('rangeValue').innerHTML = this.value;">
                     <datalist id="rangeList">
                         <option value="0" label="0">
@@ -72,12 +76,13 @@
                     </datalist>
                     <span id="rangeValue">5</span>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" name='favorite'type="checkbox" id="flexSwitchCheckDefault" checked="true">
+                        <input class="form-check-input" name='favorite' type="checkbox" id="flexSwitchCheckDefault"
+                            checked="true">
                         <label class="form-check-label" for="flexSwitchCheckDefault">Любимый ли это объект?</label>
                     </div>
                     <div class="form-floating">
-                        <textarea class="form-control" name="description"placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px; margin-top:1" required></textarea>
+                        <textarea class="form-control" name="description" placeholder="Leave a comment here"
+                            id="floatingTextarea2" style="height: 100px; margin-top:1" required></textarea>
                         <label for="floatingTextarea2" style="color: gray;">Описание объекта</label>
                     </div>
                     <div class="col-auto">

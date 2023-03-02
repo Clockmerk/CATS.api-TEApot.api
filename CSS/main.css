@@ -18,8 +18,8 @@ header h1 {
   text-align: center;
 }
 
-header button {
-  padding: 10px;
+header button, input {
+  padding: 0px;
 }
 
 .subject-section {
@@ -29,7 +29,10 @@ header button {
   padding-top: 40px;
   padding-bottom: 40px;
   margin: 10px;
-
+}
+.section-blur {
+  filter: blur(10px);
+  pointer-events: none;
 }
 
 .subject-section img {
@@ -71,6 +74,7 @@ header button {
   visibility: visible;
   opacity: 1;
   transition: .2s;
+  overflow-y: scroll;
 }
  
 .subject__content {
@@ -99,4 +103,58 @@ header button {
 
 .progress-bar {
   background-color: rgb(255, 112, 136);
+}
+
+
+.card-more {
+  background: linear-gradient(to bottom right, #5f5f5f, 70%, #ffbb00);
+  position: fixed;
+  top: 18%;
+  left: 18%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+  transition: .2s;
+  opacity: 100%;
+  border-radius: 10px;
+  border: 1px solid black ;
+  height: 400px;
+}
+
+.card-more .col-md-8{
+  color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 300px;
+  margin: 50px;
+}
+.card-text-rate {
+  margin-top: 30px;
+  color: rgb(255, 255, 255);
+}
+.card-more .row.g-0{
+  width: 400px;
+  max-height: 400px;
+}
+.img-fluid {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  max-height: 380px
+}
+.card-more-button {
+  padding-top: 10px;
+}
+
+.input-group-card {
+  display: flex;
+  flex-direction: column;
+}
+.input-group-card.div1 {
+  margin-top: -45px;
 }
