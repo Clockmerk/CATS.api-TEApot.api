@@ -48,7 +48,7 @@ document.addEventListener('keydown', (event) => {
 
 // изменение карточки
 const changeCard = async (id) => {
-    return `<div class="input-group-card div1">
+    return `<div class="input-group-card div1" data-card_id=${id.id}>
     <label for="name">Имя:</label>
     <input type="text" id="name" name="name" required value= ${id.name}>
     <div>
@@ -57,8 +57,6 @@ const changeCard = async (id) => {
     </div>
     <label for="rate">Рейтинг:</label>
     <input type="number" id="rate" name="rate" min="0" max="10" required value = ${id.rate}>
-    <label for="favorite">Любимый?:</label>
-    <input type="checkbox" id="favorite" name="favorite" required value= ${id.favorite} == true ? checked="true" " checked="false" >
 </div>
 <div class="input-group-card div2">
     <label for="age">Возраст:</label>
@@ -67,10 +65,9 @@ const changeCard = async (id) => {
     <input type="textarea" id="description" name="description" required value= ${id.description}>
     <label for="image">Изображение:</label>
     <input type="url" id="image" name="image" required value= ${id.image}>
-    <button type=submit data-action="Put">
 </div>
 <div>
-<button type="submit" data-action="Put">Отправить</button>
+<button type="submit" data-action="Put" data-card_id=${id.id} style="margin-top:10px">Отправить</button>
 </div>`
 
 }
@@ -125,10 +122,12 @@ $cardsection.addEventListener('click', async (event) => {
 
 //изменение и отправка данных
 $cardopensection.addEventListener("click", async (event) => {
+    event.preventDefault()
     const action = event.target.dataset.action;
     if (event.target === $cardopensection) return;
-
-    const subjectId = parseInt(event.target.dataset.card_id);
+    
+    const $currentCard = event.target.closest('[data-card_id]');
+    const subjectId = parseInt($currentCard.dataset.card_id);
     switch (action) {
         case 'Edit':
             try {
@@ -136,32 +135,31 @@ $cardopensection.addEventListener("click", async (event) => {
                 if (res.ok) {
                     const cardForm = $cardopensection.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild;
                     const cardPutForm = document.createElement("form");
-                    cardPutForm.className = "card-change-post"
+                    cardPutForm.dataset.card_put_id = subjectId
                     cardForm.replaceWith(cardPutForm)
                     cardPutForm.insertAdjacentHTML("afterbegin", await changeCard(res.data))
 
-                    event.target.dataset.action = "Put"
-                    event.target.innerText = "Отправить"
                 } else throw Error(res.data.message)
             } catch (error) {
                 console.log(error);
             }
             break;
 
-        case 'Put': //PUT забаговался, нужно доделать
+        case 'Put':
             try {
-                const formBody = Object.fromEntries(new FormData(event.target).entries());
-                formBody.id = Number(formBody.id)
+                
+                const putForm = document.querySelector(`[data-card_put_id="${subjectId}"]`)
+                const formBody = Object.fromEntries(new FormData(putForm).entries());
+
                 formBody.age = Number(formBody.age)
                 formBody.rate = Number(formBody.rate)
                 formBody.favorite = formBody.favorite == 'on'
 
-                console.log(formBody)
                 const res = await subjectApi.updateSubject(subjectId, formBody);
                 if (res.status == 200) {
                     $cardsection.replaceChildren();
                     getSubject()
-                    return event.target.reset()
+                    alert(res.data.message)
                 }  throw Error(res.data.message)
             } catch (error) {
                 console.log(error);
