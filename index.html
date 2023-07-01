@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base.Api</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/mobile.css">
+    <script defer src="JS/api.js"></script>
+    <script defer src="JS/script.js"></script>
+    <script defer src="JS/modal-add.js"></script>
+    <script defer src="JS/card-more.js"></script>
+</head>
+
+<body>
+    <header>
+        <form data-form-basename>
+            <input data-basename type="text" name="basename" placeholder="Введите логин базы" value="">
+        </form>
+        <h1 class="animate__animated animate__bounceIn">subjectBase API</h1>
+        <button data-add-subject type="button" class="btn btn-success">Добавить объект</button>
+    </header>
+
+    <section class="subject-section">
+    </section>
+
+    <section class="subject-card">
+    </section>
+
+    <section class="subject-form-modal">
+        <div data-modal class="modal">
+            <div class="subject__content" name="add_subject_form">
+                <h1 class="subject__title">Заполните данные об объекте</h1>
+                <form data-form-post>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Введите ID</span>
+                        <input type="number" name="id" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" required>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Введите Имя</span>
+                        <input type="text" name="name" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" required>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Вставьте ссылку</span>
+                        <input type="url" name="image" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" required>
+                    </div>
+                    <select class="form-select" name="age" aria-label="Default select example" value="0" required>
+                        <option selected value="0">Выберите возраст объекта</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="3">4</option>
+                        <option value="3">5</option>
+                        <option value="3">6</option>
+                        <option value="3">7</option>
+                        <option value="3">8</option>
+                        <option value="3">9</option>
+                        <option value="3">10</option>
+                    </select>
+                    <label for="customRange2" class="form-label">Выберите рейтинг объекта</label>
+                    <input type="range" name="rate" id="customRange2" step="1" min="0" max="10" list="rangeList"
+                        onchange="document.getElementById('rangeValue').innerHTML = this.value;">
+                    <datalist id="rangeList">
+                        <option value="0" label="0">
+                        <option value="5" label="5">
+                        <option value="10" label="10">
+                    </datalist>
+                    <span id="rangeValue">5</span>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" name='favorite' type="checkbox" id="flexSwitchCheckDefault"
+                            checked="true">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Любимый ли это объект?</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" name="description" placeholder="Leave a comment here"
+                            id="floatingTextarea2" style="height: 100px; margin-top:1" required></textarea>
+                        <label for="floatingTextarea2" style="color: gray;">Описание объекта</label>
+                    </div>
+                    <div class="col-auto">
+                        <button data-form-submit type="submit" class="btn btn-primary mb-3">Отправить</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
